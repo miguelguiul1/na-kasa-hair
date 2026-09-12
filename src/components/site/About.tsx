@@ -1,5 +1,6 @@
 import { PawPrint } from "lucide-react";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import salonInterior from "@/assets/gallery/salon-storefront-interior.jpg";
 
 export function About() {
   return (
@@ -20,6 +21,13 @@ export function About() {
             corte que combina com a próxima fase.
           </p>
         </div>
+
+        <img
+          src={salonInterior}
+          alt="Fachada e interior do Na Kasa Hair, em Pinheiros"
+          loading="lazy"
+          className="mx-auto mt-10 w-full max-w-xs rounded-2xl border border-navy-border object-contain shadow-sm"
+        />
 
         <div className="mx-auto mt-10 flex max-w-md items-center gap-4 rounded-2xl border border-navy-border bg-white px-6 py-5 shadow-sm">
           <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-cream-alt text-pink-deep">
