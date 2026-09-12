@@ -1,3 +1,4 @@
+import { PawPrint } from "lucide-react";
 import { InstagramIcon } from "@/components/icons/InstagramIcon";
 import { BUSINESS } from "@/lib/constants";
 import logo from "@/assets/logo.jpg";
@@ -19,12 +20,17 @@ export function Footer() {
           href={BUSINESS.instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-cream-base/90 hover:text-pink-primary"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-cream-base/90 hover:text-pink-deep"
         >
           <InstagramIcon className="size-4" />
           {BUSINESS.instagramHandle}
         </a>
-        <div className="mt-2 h-px w-16 bg-cream-base/20" />
+        <div className="relative mt-2 h-px w-16 bg-cream-base/20">
+          <PawPrint
+            aria-hidden="true"
+            className="absolute left-1/2 top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 bg-navy-primary text-cream-base/40"
+          />
+        </div>
         <p className="text-xs text-cream-base/60">
           © {new Date().getFullYear()} {BUSINESS.name}. Todos os direitos
           reservados.

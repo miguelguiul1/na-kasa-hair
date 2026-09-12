@@ -1,4 +1,4 @@
-import { Clock, MapPin, Phone } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -39,17 +39,10 @@ export function Contact() {
             </p>
           </div>
 
-          <div className="flex items-start gap-3">
-            <Clock className="mt-0.5 size-5 shrink-0 text-pink-deep" />
-            <p className="text-base text-navy-muted">
-              Horário de funcionamento: <span className="italic">TODO — informar ao cliente</span>
-            </p>
-          </div>
-
           <Button
             asChild
             size="lg"
-            className="mt-2 h-auto self-center rounded-full bg-pink-primary px-8 py-3.5 text-base font-semibold text-white shadow-md shadow-pink-primary/25 transition-all hover:-translate-y-0.5 hover:bg-pink-deep"
+            className="mt-2 self-center rounded-full bg-pink-primary px-8 text-base font-semibold text-white shadow-md shadow-pink-primary/25 transition-all hover:-translate-y-0.5 hover:bg-pink-deep active:scale-[0.97] active:duration-100"
           >
             <a
               href={whatsappLink()}

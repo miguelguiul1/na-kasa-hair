@@ -1,4 +1,5 @@
 import { Separator } from "@/components/ui/separator";
+import { useInView } from "@/hooks/use-in-view";
 import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
@@ -24,9 +25,11 @@ export function SectionHeading({
   className,
 }: SectionHeadingProps) {
   const parts = accentWord ? title.split(accentWord) : [title];
+  const { ref, inView } = useInView<HTMLDivElement>();
 
   return (
     <div
+      ref={ref}
       className={cn(
         "flex flex-col gap-4",
         align === "center" ? "items-center text-center" : "items-start text-left",
@@ -34,11 +37,21 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <span className="font-script text-2xl text-pink-deep sm:text-3xl">
+        <span
+          className={cn(
+            "font-script text-2xl text-pink-deep transition-all duration-[400ms] ease-out sm:text-3xl",
+            inView ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0",
+          )}
+        >
           {eyebrow}
         </span>
       ) : null}
-      <h2 className="text-3xl font-semibold text-navy-primary sm:text-4xl">
+      <h2
+        className={cn(
+          "text-3xl font-semibold text-navy-primary transition-all duration-[400ms] ease-out sm:text-4xl",
+          inView ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0",
+        )}
+      >
         {accentWord ? (
           <>
             {parts[0]}
@@ -51,7 +64,11 @@ export function SectionHeading({
       </h2>
       <Separator
         orientation="horizontal"
-        className="h-1.5 w-14 rounded-full bg-navy-primary sm:w-16"
+        className={cn(
+          "h-1.5 w-14 origin-left rounded-full bg-navy-primary transition-transform duration-500 ease-out sm:w-16",
+          inView ? "scale-x-100" : "scale-x-0",
+        )}
+        style={{ transitionDelay: "150ms" }}
       />
       {description ? (
         <p className="max-w-2xl text-base text-navy-muted">{description}</p>

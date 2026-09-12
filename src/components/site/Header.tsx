@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { whatsappLink } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.jpg";
 
 const NAV_LINKS = [
@@ -23,7 +24,7 @@ export function Header() {
           <img
             src={logo}
             alt="Na Kasa Hair"
-            className="h-10 w-auto aspect-[4/1] object-cover object-center sm:h-12"
+            className="h-10 w-auto aspect-[4/1] object-cover object-center transition-transform duration-300 hover:-rotate-2 hover:scale-105 sm:h-12"
           />
         </a>
 
@@ -32,7 +33,7 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-navy-primary transition-colors hover:text-pink-primary"
+              className="text-sm font-medium text-navy-primary transition-colors hover:text-pink-deep"
             >
               {link.label}
             </a>
@@ -42,7 +43,8 @@ export function Header() {
         <div className="hidden md:block">
           <Button
             asChild
-            className="rounded-full bg-pink-primary px-5 text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-pink-deep"
+            size="lg"
+            className="rounded-full bg-pink-primary px-8 text-base font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-pink-deep active:scale-[0.97] active:duration-100"
           >
             <a
               href={whatsappLink()}
@@ -57,29 +59,56 @@ export function Header() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-full p-2 text-navy-primary md:hidden"
+          className="relative inline-flex size-10 items-center justify-center rounded-full p-2 text-navy-primary md:hidden"
           aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((open) => !open)}
         >
-          {menuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+          <Menu
+            aria-hidden="true"
+            className={cn(
+              "absolute inset-0 m-auto size-6 transition-all duration-200",
+              menuOpen ? "scale-0 rotate-90 opacity-0" : "scale-100 rotate-0 opacity-100",
+            )}
+          />
+          <X
+            aria-hidden="true"
+            className={cn(
+              "absolute inset-0 m-auto size-6 transition-all duration-200",
+              menuOpen ? "scale-100 rotate-0 opacity-100" : "scale-0 -rotate-90 opacity-0",
+            )}
+          />
         </button>
       </div>
 
-      {menuOpen ? (
-        <nav className="flex flex-col gap-1 border-t border-navy-border bg-cream-base px-4 pb-4 pt-2 md:hidden">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="rounded-lg px-2 py-2.5 text-base font-medium text-navy-primary transition-colors hover:bg-cream-alt hover:text-pink-primary"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-      ) : null}
+      <div
+        className={cn(
+          "grid transition-[grid-template-rows] duration-300 ease-out md:hidden",
+          menuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+        )}
+      >
+        <div className="overflow-hidden">
+          <nav
+            aria-hidden={!menuOpen}
+            className={cn(
+              "flex flex-col gap-1 border-t border-navy-border bg-cream-base px-4 pb-4 pt-2 transition-opacity duration-300",
+              menuOpen ? "opacity-100" : "opacity-0",
+            )}
+          >
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                tabIndex={menuOpen ? 0 : -1}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-lg px-2 py-2.5 text-base font-medium text-navy-primary transition-colors hover:bg-cream-alt hover:text-pink-deep"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
     </header>
   );
 }

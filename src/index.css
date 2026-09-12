@@ -89,10 +89,64 @@
   html {
     @apply font-sans scroll-smooth;
   }
+  ::selection {
+    background-color: var(--pink-primary);
+    color: #fff;
+  }
+  ::-moz-selection {
+    background-color: var(--pink-primary);
+    color: #fff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @layer utilities {
   .font-script {
     font-family: var(--font-script);
+  }
+}
+
+/* Pet-friendly card hover detail (About section): little paw prints that
+   drift up and away from the icon badge, staggered per print. */
+@keyframes paw-pop {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.85);
+  }
+  35% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--paw-x, 12px), -32px) scale(1.05);
+  }
+}
+
+.animate-paw-pop {
+  animation: paw-pop 700ms ease-out forwards;
+}
+
+/* Services card "Cortes" icon: a quick snip wiggle on hover. */
+@keyframes scissor-snip {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-12deg);
+  }
+  75% {
+    transform: rotate(12deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }

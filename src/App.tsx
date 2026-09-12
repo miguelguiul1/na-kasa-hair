@@ -1,7 +1,6 @@
 import { Header } from "@/components/site/Header";
 import { MobileWhatsappBar } from "@/components/site/MobileWhatsappBar";
 import { Hero } from "@/components/site/Hero";
-import { SocialProofStrip } from "@/components/site/SocialProofStrip";
 import { Services } from "@/components/site/Services";
 import { About } from "@/components/site/About";
 import { Gallery } from "@/components/site/Gallery";
@@ -15,7 +14,6 @@ function App() {
       <Header />
       <main>
         <Hero />
-        <SocialProofStrip />
         <Services />
         <About />
         <Gallery />
