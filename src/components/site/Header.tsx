@@ -28,23 +28,23 @@ export function Header() {
           />
         </a>
 
-        <nav className="hidden items-center gap-7 md:flex">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-navy-primary transition-colors hover:text-pink-deep"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        <div className="hidden items-center gap-4 md:flex lg:gap-8">
+          <nav className="flex items-center gap-5 lg:gap-7">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-navy-primary transition-colors hover:text-pink-deep"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
 
-        <div className="hidden md:block">
           <Button
             asChild
             size="lg"
-            className="rounded-full bg-pink-primary px-8 text-base font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-pink-deep active:scale-[0.97] active:duration-100"
+            className="rounded-full bg-pink-primary px-5 text-base font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-pink-deep active:scale-[0.97] active:duration-100 lg:px-8"
           >
             <a
               href={whatsappLink()}

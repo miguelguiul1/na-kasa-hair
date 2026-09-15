@@ -8,26 +8,43 @@ import { cn } from "@/lib/utils";
  * Mobile-only sticky bottom WhatsApp CTA bar. Hidden until the visitor
  * has scrolled past the hero section, then hidden again on desktop
  * where the header already carries a WhatsApp button. It also hides
- * itself once the footer scrolls into view so it never overlaps the
- * footer content (the footer's own WhatsApp/contact info takes over).
+ * itself once the footer or the contact section scrolls into view, so
+ * it never doubles up with the WhatsApp CTA those sections already show.
  */
 export function MobileWhatsappBar() {
   const scrolledPastHero = useScrolledPast(window.innerHeight * 0.7);
   const [footerVisible, setFooterVisible] = useState(false);
+  const [contactVisible, setContactVisible] = useState(false);
 
   useEffect(() => {
-    const footer = document.querySelector("footer");
-    if (!footer || typeof IntersectionObserver === "undefined") return;
+    if (typeof IntersectionObserver === "undefined") return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setFooterVisible(entry.isIntersecting),
-      { rootMargin: "0px 0px -10% 0px" },
-    );
-    observer.observe(footer);
-    return () => observer.disconnect();
+    const footer = document.querySelector("footer");
+    const contact = document.getElementById("contato");
+    const observers: IntersectionObserver[] = [];
+
+    if (footer) {
+      const observer = new IntersectionObserver(
+        ([entry]) => setFooterVisible(entry.isIntersecting),
+        { rootMargin: "0px 0px -10% 0px" },
+      );
+      observer.observe(footer);
+      observers.push(observer);
+    }
+
+    if (contact) {
+      const observer = new IntersectionObserver(
+        ([entry]) => setContactVisible(entry.isIntersecting),
+        { rootMargin: "0px 0px -10% 0px" },
+      );
+      observer.observe(contact);
+      observers.push(observer);
+    }
+
+    return () => observers.forEach((observer) => observer.disconnect());
   }, []);
 
-  const visible = scrolledPastHero && !footerVisible;
+  const visible = scrolledPastHero && !footerVisible && !contactVisible;
 
   return (
     <div
