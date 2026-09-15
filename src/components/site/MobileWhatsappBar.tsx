@@ -58,7 +58,8 @@ export function MobileWhatsappBar() {
         href={whatsappLink()}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex w-full items-center justify-center gap-2 rounded-full bg-pink-primary px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-pink-primary/20 transition-all active:bg-pink-deep active:scale-[0.97] active:duration-100"
+        tabIndex={visible ? 0 : -1}
+        className="flex w-full items-center justify-center gap-2 rounded-full bg-pink-deep px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-pink-primary/20 transition-all active:brightness-90 active:scale-[0.97] active:duration-100"
       >
         <WhatsAppIcon className="size-5 text-white" />
         Agendar no WhatsApp

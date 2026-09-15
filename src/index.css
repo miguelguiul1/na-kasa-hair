@@ -55,7 +55,7 @@
   --pink-deep: #b8317e;
   --navy-primary: #1e2a5e;
   --navy-muted: #5a6280;
-  --navy-border: rgba(30, 42, 94, 0.12);
+  --navy-border: rgba(30, 42, 94, 0.55);
 
   /* ---- shadcn semantic tokens mapped onto the brand palette ---- */
   --background: var(--cream-base);

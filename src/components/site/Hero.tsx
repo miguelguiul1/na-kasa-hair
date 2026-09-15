@@ -44,7 +44,7 @@ export function Hero() {
         <Button
           asChild
           size="lg"
-          className="rounded-full bg-pink-primary px-8 text-base font-semibold text-white shadow-md shadow-pink-primary/25 transition-all hover:-translate-y-0.5 hover:bg-pink-deep active:scale-[0.97] active:duration-100"
+          className="rounded-full bg-pink-deep px-8 text-base font-semibold text-white shadow-md shadow-pink-primary/25 transition-all hover:-translate-y-0.5 hover:brightness-90 active:scale-[0.97] active:duration-100"
         >
           <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
             <WhatsAppIcon className="size-5 text-white" />

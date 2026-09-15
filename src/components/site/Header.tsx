@@ -44,7 +44,7 @@ export function Header() {
           <Button
             asChild
             size="lg"
-            className="rounded-full bg-pink-primary px-5 text-base font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-pink-deep active:scale-[0.97] active:duration-100 lg:px-8"
+            className="rounded-full bg-pink-deep px-5 text-base font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:brightness-90 active:scale-[0.97] active:duration-100 lg:px-8"
           >
             <a
               href={whatsappLink()}
@@ -59,7 +59,7 @@ export function Header() {
 
         <button
           type="button"
-          className="relative inline-flex size-10 items-center justify-center rounded-full p-2 text-navy-primary md:hidden"
+          className="relative inline-flex size-10 items-center justify-center rounded-full p-2 text-navy-primary outline-none md:hidden focus-visible:ring-3 focus-visible:ring-pink-deep"
           aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((open) => !open)}
@@ -100,7 +100,10 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 tabIndex={menuOpen ? 0 : -1}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => {
+                  setMenuOpen(false);
+                  e.currentTarget.blur();
+                }}
                 className="rounded-lg px-2 py-2.5 text-base font-medium text-navy-primary transition-colors hover:bg-cream-alt hover:text-pink-deep"
               >
                 {link.label}

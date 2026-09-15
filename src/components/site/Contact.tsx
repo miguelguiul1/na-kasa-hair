@@ -42,7 +42,7 @@ export function Contact() {
           <Button
             asChild
             size="lg"
-            className="mt-2 self-center rounded-full bg-pink-primary px-8 text-base font-semibold text-white shadow-md shadow-pink-primary/25 transition-all hover:-translate-y-0.5 hover:bg-pink-deep active:scale-[0.97] active:duration-100"
+            className="mt-2 self-center rounded-full bg-pink-deep px-8 text-base font-semibold text-white shadow-md shadow-pink-primary/25 transition-all hover:-translate-y-0.5 hover:brightness-90 active:scale-[0.97] active:duration-100"
           >
             <a
               href={whatsappLink()}

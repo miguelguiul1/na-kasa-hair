@@ -20,7 +20,7 @@ export function Footer() {
           href={BUSINESS.instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-cream-base/90 hover:text-pink-deep"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-cream-base/90 transition-colors hover:text-cream-base hover:underline"
         >
           <InstagramIcon className="size-4" />
           {BUSINESS.instagramHandle}
