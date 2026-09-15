@@ -25,7 +25,7 @@ export function Hero() {
         </span>
 
         <h1 className="text-4xl font-semibold leading-tight text-navy-primary sm:text-5xl lg:text-6xl">
-          Na Kasa <span className="text-pink-primary">Hair</span>
+          Na Kasa <span className="text-pink-deep">Hair</span>
         </h1>
 
         <p className="max-w-xl text-lg text-navy-primary/90 sm:text-xl">

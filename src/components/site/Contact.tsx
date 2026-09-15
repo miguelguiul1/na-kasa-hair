@@ -10,7 +10,11 @@ import {
 
 export function Contact() {
   return (
-    <section id="contato" className="bg-cream-alt px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <section
+      id="contato"
+      tabIndex={-1}
+      className="bg-cream-alt px-4 py-16 outline-none sm:px-6 sm:py-24 lg:px-8"
+    >
       <div className="mx-auto max-w-3xl">
         <SectionHeading eyebrow="Vamos marcar?" title="Contato" />
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
@@ -14,8 +14,34 @@ const NAV_LINKS = [
   { href: "#contato", label: "Contato" },
 ];
 
+/**
+ * Moves DOM focus to the target section after a hash-link click, so
+ * keyboard/screen-reader users land where the page actually scrolled to
+ * (native hash navigation alone doesn't move focus onto non-interactive
+ * targets). Native scrolling is left alone — this only supplements it.
+ */
+function focusSection(href: string) {
+  const target = document.querySelector<HTMLElement>(href);
+  target?.focus({ preventScroll: true });
+}
+
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuToggleRef.current?.focus();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-navy-border bg-cream-base/95 backdrop-blur supports-[backdrop-filter]:bg-cream-base/80">
@@ -29,11 +55,12 @@ export function Header() {
         </a>
 
         <div className="hidden items-center gap-4 md:flex lg:gap-8">
-          <nav className="flex items-center gap-5 lg:gap-7">
+          <nav aria-label="Navegação principal" className="flex items-center gap-5 lg:gap-7">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
+                onClick={() => focusSection(link.href)}
                 className="text-sm font-medium text-navy-primary transition-colors hover:text-pink-deep"
               >
                 {link.label}
@@ -58,6 +85,7 @@ export function Header() {
         </div>
 
         <button
+          ref={menuToggleRef}
           type="button"
           className="relative inline-flex size-10 items-center justify-center rounded-full p-2 text-navy-primary outline-none md:hidden focus-visible:ring-3 focus-visible:ring-pink-deep"
           aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
@@ -89,6 +117,7 @@ export function Header() {
       >
         <div className="overflow-hidden">
           <nav
+            aria-label="Menu mobile"
             aria-hidden={!menuOpen}
             className={cn(
               "flex flex-col gap-1 border-t border-navy-border bg-cream-base px-4 pb-4 pt-2 transition-opacity duration-300",
@@ -100,9 +129,9 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 tabIndex={menuOpen ? 0 : -1}
-                onClick={(e) => {
+                onClick={() => {
                   setMenuOpen(false);
-                  e.currentTarget.blur();
+                  focusSection(link.href);
                 }}
                 className="rounded-lg px-2 py-2.5 text-base font-medium text-navy-primary transition-colors hover:bg-cream-alt hover:text-pink-deep"
               >

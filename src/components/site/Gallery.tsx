@@ -33,7 +33,11 @@ const GALLERY_ITEMS = [
 
 export function Gallery() {
   return (
-    <section id="galeria" className="bg-cream-base px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <section
+      id="galeria"
+      tabIndex={-1}
+      className="bg-cream-base px-4 py-16 outline-none sm:px-6 sm:py-24 lg:px-8"
+    >
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="Um gostinho do salão"
