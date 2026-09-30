@@ -1,44 +1,38 @@
-# Na Kasa Hair — site (protótipo)
+# Protótipo · site para salão de beleza
 
-One-page marketing site prototype for **Na Kasa Hair**, salão de beleza em
-Pinheiros, São Paulo. Built with React + TypeScript + Vite + Tailwind CSS +
-shadcn/ui.
+Um site de uma página para salão de beleza, feito para transformar quem chega pelo Instagram em cliente com horário marcado pelo WhatsApp.
+
+**No ar:** https://na-kasa-hair.vercel.app
+
+> Protótipo independente, feito por mim como estudo de design e de produto. Não é o site oficial de nenhum estabelecimento e não tem vínculo com nenhum negócio. Nomes, marcas e imagens de terceiros que aparecem na demonstração pertencem aos seus donos.
+
+## O que o protótipo resolve
+
+Muito salão tem um Instagram bonito e nenhum lugar onde a cliente encontre, de uma vez, serviços, endereço e um jeito rápido de marcar horário. Este protótipo reúne isso numa página só:
+
+- **Serviços, galeria e "sobre"** numa leitura curta, pensada para o celular.
+- **Barra fixa de WhatsApp no celular**, com mensagem já escrita.
+- **Contato e localização** com link para o mapa.
+- **Acessibilidade revisada:** contraste, foco visível e navegação por teclado, a partir de uma auditoria com correções dos achados críticos e moderados.
+- **Headers de segurança** configurados no `vercel.json`.
+
+## Tecnologias
+
+React, TypeScript, Vite, Tailwind CSS e shadcn/ui. Sem backend. Deploy na Vercel.
 
 ## Rodando localmente
 
 ```bash
+git clone https://github.com/miguelguiul1/na-kasa-hair.git
+cd na-kasa-hair
 npm install
-npm run dev
+npm run dev        # http://localhost:5173
+npm run build      # build de produção
+npm run preview    # serve o build para conferência
 ```
 
-Abra o endereço mostrado no terminal (geralmente `http://localhost:5173`).
+Este projeto não usa variáveis de ambiente.
 
-## Build de produção
+## Licença
 
-```bash
-npm run build
-npm run preview   # serve o build localmente para conferência
-```
-
-## Estrutura
-
-- `src/App.tsx` — monta a página, seção por seção.
-- `src/components/site/` — cada seção do site (Header, Hero, Services,
-  About, Gallery, InstagramBlock, Contact, Footer, etc.).
-- `src/components/ui/` — componentes shadcn/ui (Button, Card, Badge,
-  Separator).
-- `src/components/icons/` — ícones de marca (WhatsApp, Instagram) que não
-  existem no pacote `lucide-react`.
-- `src/lib/constants.ts` — todos os dados reais do negócio (endereço,
-  telefone/WhatsApp, Instagram, nota do Google) em um único lugar.
-- `src/assets/logo.jpg` — logo real do salão, usada no header e no rodapé.
-
-## Pendências para o cliente (TODO)
-
-Ver lista completa entregue junto com o protótipo. Resumo:
-
-- Fotos reais do salão/trabalhos para substituir os placeholders da Galeria.
-- Horário de funcionamento (não informado — placeholder visível na seção
-  Contato).
-- Confirmar se o link do Google Maps (busca pelo endereço) é suficiente ou
-  se o cliente prefere linkar o perfil exato do Google Business.
+O código está sob a licença [MIT](LICENSE). A licença não cobre marcas, logos, fotos nem textos de terceiros.
